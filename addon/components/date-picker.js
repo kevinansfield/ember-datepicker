@@ -70,13 +70,20 @@ export default Em.TextField.extend({
         },
         picker = null;
 
-    ['bound', 'position', 'reposition', 'container', 'format', 'firstDay',
+    ['bound', 'position', 'reposition', 'format', 'firstDay',
      'minDate', 'maxDate', 'showWeekNumber', 'isRTL', 'i18n', 'yearSuffix',
      'showMonthAfterYear', 'numberOfMonths', 'mainCalendar'].forEach(function(f) {
        if (!Em.isEmpty(that.get(f))) {
          pickerOptions[f] = that.get(f);
        }
      });
+
+    if ('string' === typeof this.get('container')) {
+      pickerOptions.container = $(this.get('container'))[0];
+    } else if (!Em.isEmpty(this.get('container'))) {
+      pickerOptions.container = this.get('container');
+    }
+
     picker = new window.Pikaday(pickerOptions);
 
     // store Pikaday element for later access
