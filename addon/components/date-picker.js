@@ -78,10 +78,10 @@ export default Em.TextField.extend({
        }
      });
 
-    if ('string' === typeof this.get('container')) {
-      pickerOptions.container = $(this.get('container'))[0];
-    } else if (!Em.isEmpty(this.get('container'))) {
-      pickerOptions.container = this.get('container');
+    if ('string' === typeof this.get('containerElement')) {
+      pickerOptions.container = $(this.get('containerElement'))[0];
+    } else if (!Em.isEmpty(this.get('containerElement'))) {
+      pickerOptions.container = this.get('containerElement');
     }
 
     picker = new window.Pikaday(pickerOptions);
